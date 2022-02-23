@@ -59,46 +59,50 @@ Perform following queriesi n MySQL
 
 3.Prepare queries to find student's presence/absence on a particular day.
 
-    mysql> SELECT * FROM   Students WHERE  ID IN (SELECT id FROM   Student_attendances WHERE  attendance = 'P' AND created_at  = '2022-02-02');
+    mysql> select s.first_name,a.attendance,a.created_at from Students as s join Student_attendances as a on a.studentID=s.ID  where created_at='2022-02-02';
 
-    OUTPUT:
-    +----+------------+-----------+----------+------------+----------+
-    | ID | first_name | last_name | standard | percentage | interest |
-    +----+------------+-----------+----------+------------+----------+
-    |  1 | Priyanka   | Gour      |       12 |      54.99 |    10.50 |
-    |  2 | Agrima     | Kanodia   |       12 |      34.99 |     4.50 |
-    |  3 | Puja       | Bagdi     |       11 |      44.99 |     5.50 |
-    +----+------------+-----------+----------+------------+----------+
+    OUTPUT:        
+    +------------+------------+------------+
+    | first_name | attendance | created_at |
+    +------------+------------+------------+
+    | Priyanka   | P          | 2022-02-02 |
+    | Agrima     | P          | 2022-02-02 |
+    | Puja       | P          | 2022-02-02 |
+    | Anisha     | A          | 2022-02-02 |
+    | Amisha     | A          | 2022-02-02 |
+    +------------+------------+------------+
+
 
 4.Find total absence/presence of every student.
 
-    mysql> select count(attendance),s.first_name from Student_attendances as a join Students as s on a.studentID=s.id where a.attendance='P' group by a.studentID;
+   mysql> select count(a.attendance)as Total,a.attendance,s.first_name from Student_attendances as a join Students as s on a.studentID=s.id where a.attendance='P' group by a.studentID;
 
     OUTPUT:
-    +-------------------+------------+
-    | count(attendance) | first_name |
-    +-------------------+------------+
-    |                 3 | Priyanka   |
-    |                 3 | Agrima     |
-    |                 2 | Puja       |
-    |                 3 | Anisha     |
-    +-------------------+------------+
+    +-------+------------+------------+
+    | Total | attendance | first_name |
+    +-------+------------+------------+
+    |     3 | P          | Priyanka   |
+    |     3 | P          | Agrima     |
+    |     2 | P          | Puja       |
+    |     3 | P          | Anisha     |
+    +-------+------------+------------+
+
 
 5.Find absent students with a percentage lower than 70.
 
-    mysql> select count(a.attendance), s.first_name from Student_attendances as a join Students as s on a.studentID=s.id where a.attendance='A' and s.percentage <=70 group by a.studentID;
+   mysql> select  s.first_name, s.percentage,a.attendance from Student_attendances as a join Students as s on a.studentID=s.id where a.attendance='A' and s.percentage <=70 group by a.studentID;
 
     OUTPUT:
-    +---------------------+------------+
-    | count(a.attendance) | first_name |
-    +---------------------+------------+
-    |                   1 | Anisha     |
-    |                   1 | Amisha     |
-    |                   1 | Priyanka   |
-    |                   1 | Agrima     |
-    |                   1 | Puja       |
-    +---------------------+------------+              
-
+    +------------+------------+------------+
+    | first_name | percentage | attendance |
+    +------------+------------+------------+
+    | Anisha     |      46.69 | A          |
+    | Amisha     |      45.79 | A          |
+    | Priyanka   |      54.99 | A          |
+    | Agrima     |      34.99 | A          |
+    | Puja       |      44.99 | A          |
+    +------------+------------+------------+
+       
 
 <!-- Students table
 
