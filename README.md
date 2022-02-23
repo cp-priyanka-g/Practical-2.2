@@ -103,17 +103,11 @@ Perform following queriesi n MySQL
 <!-- Students table
 
 mysql> INSERT INTO Students VALUES ('1','Priyanka','Gour','12','54.99','10.50');
-
 mysql> INSERT INTO Students VALUES ('2','Agrima','Kanodia','12','34.99','4.50');
-
 mysql> INSERT INTO Students VALUES ('3','Puja','Bagdi','11','44.99','5.50');
-
 mysql> INSERT INTO Students VALUES ('4','Anisha','Shaikh','11','46.69','7.50');
-
 mysql> INSERT INTO Students VALUES ('5','Amisha','Shah','5','45.79','8.50');
-
 mysql> INSERT INTO Students VALUES ('6','Anushka','Sharma','7','85.79','7.50');
-
 mysql> INSERT INTO Students VALUES ('7','Anita','patel','8','85.00','8.50'); -->
 
 <!--    Student_attendance
@@ -136,7 +130,6 @@ mysql> INSERT INTO Student_attendances VALUES ('4','4','2022-02-02','A');
 mysql> INSERT INTO Student_attendances VALUES ('13','4','2022-02-07','P');
 mysql> INSERT INTO Student_attendances VALUES ('14','4','2022-02-05','P');
 mysql> INSERT INTO Student_attendances VALUES ('15','4','2022-02-06','P');
-
 mysql> INSERT INTO Student_attendances VALUES ('5','5','2022-02-02','A'); -->
 
 Perform following queries in MongoDB
@@ -144,7 +137,6 @@ Perform following queries in MongoDB
 step1:docker start mongodb
 step2:sudo docker exec -it mongodb bash 
     root@be376a33751f:/# mongo
-
 
 
 1. Create a collection named students with fields id, first_name, last_name, standard, percentage, interest, etc... and insert data into it
@@ -161,6 +153,7 @@ OUTPUT:
 >db.Students.find();
 
 OUTPUT:
+
 
 { "_id" : ObjectId("6215bd9b6c5bd456e55bc8fa"), "sid" : 1, "first_name" : "Priyanka", "last_name" : "Gour", "standard" : 12, "percentage" : 99.89, "interest" : "sports" }
 { "_id" : ObjectId("6215be716c5bd456e55bc8fd"), "sid" : 3, "first_name" : "Agrima", "last_name" : "Kanodia", "standard" : 11, "percentage" : 53.89, "interest" : "Art" }
@@ -182,8 +175,8 @@ OUTPUT:
 
 3. Count the total students with a percentage above 70
 
-    > db.Students.find({percentage : { $gt : 70}}).count();
-    
+    >db.Students.find({percentage : { $gt : 70}}).count();
+
     OUTPUT:
     3
 
