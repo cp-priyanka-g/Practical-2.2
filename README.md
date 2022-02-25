@@ -75,17 +75,19 @@ Perform following queriesi n MySQL
 
 4.Find total absence/presence of every student.
 
-   mysql> select count(a.attendance)as Total,a.attendance,s.first_name from Student_attendances as a join Students as s on a.studentID=s.id where a.attendance='P' group by a.studentID;
+   mysql> select sum(if(a.attendance='P',1,0)) as Present , sum(if(a.attendance='A',1,0)) as Absent , s.first_name from Student_attendances as a  join Students as s on a.studentID=s.id group by a.studentID;
 
     OUTPUT:
-    +-------+------------+------------+
-    | Total | attendance | first_name |
-    +-------+------------+------------+
-    |     3 | P          | Priyanka   |
-    |     3 | P          | Agrima     |
-    |     2 | P          | Puja       |
-    |     3 | P          | Anisha     |
-    +-------+------------+------------+
+    +---------+--------+------------+
+    | Present | Absent | first_name |
+    +---------+--------+------------+
+    |       3 |      1 | Priyanka   |
+    |       3 |      1 | Agrima     |
+    |       2 |      1 | Puja       |
+    |       3 |      1 | Anisha     |
+    |       0 |      1 | Amisha     |
+    +---------+--------+------------+
+
 
 
 5.Find absent students with a percentage lower than 70.
