@@ -5,9 +5,13 @@ Step1: docker start  [ID]/[container_name].
        sudo chmod 666 /var/run/docker.sock 
 
 step2: sudo docker exec -it mysql_docker  bash
+
 Step3: mysql -uroot -p 
+
 Enter password: 
+
 Step4: show databases;
+
 step5: use studentDB.
 
 Perform following queriesi n MySQL
